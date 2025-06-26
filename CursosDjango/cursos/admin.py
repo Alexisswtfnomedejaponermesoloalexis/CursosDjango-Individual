@@ -4,7 +4,7 @@ from .models import Becas
 
 class AdministrarModelo(admin.ModelAdmin):
     readonly_fields = ('created', 'updated')
-    list_display = ('codCurso', 'nameCurso', 'turnoCurso', 'imagen')
+    list_display = ('codCurso', 'nameCurso', 'turnoCurso', 'disponible', 'cupo_maximo')
     search_fields = ('codCurso','nameCurso','turnoCurso')
     date_hierarchy = 'created'
     list_filter = ('codCurso','nameCurso', 'turnoCurso', 'disponible')
