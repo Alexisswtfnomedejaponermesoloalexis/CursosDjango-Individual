@@ -1,0 +1,33 @@
+{% extends "contenido/encabezado.html" %}
+{% load static %}
+
+{% block titulo %}Inicio{% endblock %}
+
+{% block imagen %}
+<img src="{% static 'contenido/images/home.png' %}" class="img-fluid mx-auto d-block" style="max-height: 120px;" alt="Inicio">
+{% endblock %}
+
+{% block titulo_principal %}
+CURSOS DJANGO </br><span>DESARROLLO WEB INTEGRAL</span>
+{% endblock %}
+
+
+
+{% block contenido %}
+
+
+
+
+<div class="page-header">
+  <div class="page-title">
+    <div class="text-center">
+    <h3>||  W E L L C O M E ||</h3>
+    <small>ALEXI´S PROJECT</small>
+  </div>
+</div>
+<div class="text-center">
+
+<p class="lead">Proyecto creado en DJango desde 0 </p>
+</div>
+</div>
+{% endblock %}

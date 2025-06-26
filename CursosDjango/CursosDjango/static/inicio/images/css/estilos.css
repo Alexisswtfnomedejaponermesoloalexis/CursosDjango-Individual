@@ -1,0 +1,39 @@
+/* ======== ESTILOS PERSONALIZADOS ======== */
+body {
+  background-color: #f8f9fa;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+h1, h2 {
+  color: #2c3e50;
+}
+
+nav a.nav-link {
+  color: #ffffff;
+  transition: color 0.3s ease-in-out;
+}
+
+nav a.nav-link:hover {
+  color: #ffc107;
+}
+
+footer {
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+form input, form select, form textarea {
+  border-radius: 5px;
+  border: 1px solid #ced4da;
+}
+
+button, input[type="submit"] {
+  background-color: #0d6efd;
+  border: none;
+}

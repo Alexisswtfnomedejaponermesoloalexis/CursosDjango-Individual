@@ -1,0 +1,90 @@
+{% extends "contenido/encabezado.html" %}
+{% block titulo %}Cursos Disponibles{% endblock %}
+
+{% block contenido %}
+<div class="cursos-container">
+    <h2>Lista de Cursos</h2>
+    
+    <table class="cursos-table">
+        <thead>
+            <tr>
+                <th>Foto</th>
+                <th>Código</th>
+                <th>Nombre</th>
+                <th>Cupo</th>
+                <th>Turno</th>
+                <th>Disponible</th>
+                <th>Costo</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for curso in Cursos %}
+            <tr>
+                <td>
+                    <img src="{{curso.imagen.url}}" alt="Curso" class="curso-img">
+                </td>
+                <td>{{curso.codCurso}}</td>
+                <td>{{curso.nameCurso}}</td>
+                <td>{{curso.cupo_maximo}}</td>
+                <td>{{curso.turnoCurso}}</td>
+                <td>
+                    {% if curso.disponible %}
+                        <span class="disponible">Sí</span>
+                    {% else %}
+                        <span class="no-disponible">No</span>
+                    {% endif %}
+                </td>
+                <td>${{curso.costo}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<style>
+    .cursos-container {
+        max-width: 1200px;
+        margin: 20px;
+        padding: 20px;
+    }
+    
+    h2 {
+        color: #333;
+        margin-bottom: 15px;
+    }
+    
+    .cursos-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    
+    .cursos-table th {
+        background: #f0f0f0;
+        padding: 10px;
+        text-align: left;
+        border-bottom: 2px solid #ddd;
+    }
+    
+    .cursos-table td {
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .curso-img {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border: 1px solid #ddd;
+    }
+    
+    .disponible {
+        color: green;
+        font-weight: bold;
+    }
+    
+    .no-disponible {
+        color: red;
+        font-weight: bold;
+    }
+</style>
+{% endblock %}
