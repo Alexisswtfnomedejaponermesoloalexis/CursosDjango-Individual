@@ -8,6 +8,7 @@ class Cursos(models.Model):
     turnoCurso = models.CharField(max_length=10, verbose_name="Turno del curso")
     cupo_maximo = models.IntegerField(default=30,verbose_name="Cupo máximo del curso") 
     costo = models.FloatField(default=0.0, verbose_name="Costo del curso") 
+    contacto = models.EmailField(null=True, blank=True, verbose_name="Contacto del Curso")
     disponible = models.BooleanField(default=True,verbose_name="¿Se encuentra habilitado el curso?")
     imagen = models.ImageField(null=True,upload_to="fotos",verbose_name="Fotografía del curso")
     created = models.DateTimeField(auto_now_add=True) #Fecha y tiempo

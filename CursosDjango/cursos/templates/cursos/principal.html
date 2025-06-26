@@ -16,6 +16,8 @@
                 <th>Turno</th>
                 <th>Disponible</th>
                 <th>Costo</th>
+                <th>Contacto</th>
+                <th>Fecha de Creación del Curso</th>
             </tr>
         </thead>
         <tbody>
@@ -36,6 +38,8 @@
                     {% endif %}
                 </td>
                 <td>${{curso.costo}}</td>
+                <td>{{curso.contacto}}</td>
+                <td>{{curso.created}}</td>
             </tr>
             {% endfor %}
         </tbody>
