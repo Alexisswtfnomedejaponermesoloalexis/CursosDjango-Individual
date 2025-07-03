@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import Cursos
 from .models import Becas
+from .models import Actividad
 
 class AdministrarModelo(admin.ModelAdmin):
     readonly_fields = ('created', 'updated')
@@ -23,3 +24,11 @@ class AdministrarBecas(admin.ModelAdmin):
     
 
 admin.site.register(Becas, AdministrarBecas)
+
+class AdministrarActividad(admin.ModelAdmin):
+    list_display = ('id_act', 'desc_act')
+    search_fields = ('id_act','created')
+    date_hierarchy = 'created'
+    readonly_fields = ('created', 'id_act')
+    list_filter = ('id_act', 'created')
+admin.site.register(Actividad, AdministrarActividad)
