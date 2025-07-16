@@ -31,9 +31,9 @@ urlpatterns = [
   path('formEditarComentario/<int:id>/',
          views_cursos.consultarComentarioIndividual, name='ConsultaIndividual'),
 
-    path('editarComentario/<int:id>/',
-         views_cursos.editarComentarioContacto,name='Editar'),
+    path('editarComentario/<int:id>/',views_cursos.editarComentarioContacto,name='Editar'),
          path('eliminarComentario/<int:id>/',views_cursos.eliminarComentarioContacto,name='Eliminar'),
+         
 ]
 
 

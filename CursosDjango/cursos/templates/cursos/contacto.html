@@ -7,7 +7,7 @@
 
 
 {% block titulo_principal %}
-	Contacto <span> Soporte</span>
+	COMENTARIOS <span><br/> CURSOSDJANGO</span>
 
 
 {% endblock %}
@@ -21,32 +21,14 @@
 	<!--Encabezdo -->
 			<div class="page-header">
 				<div class="page-title">
-					<h3>Contactanos
-				    <small>Ingresa tu información</small></h3>
+					<h3>Agrega un comentario sobre los cursos <br/> <br/>
+				    <small>Ingresa tu comentario...</small></h3>
 				</div>
 
 				
 				
 			</div>
 
-{% block url %}
-
-<div class="breadcrumb-line">
-		<ul class="breadcrumb">
-			<a href="{%url 'Formulario'%}">
-				{%if request.path == '/' %}
-					Contacto
-				{%else%}
-					Contacto{{request.path}}
-				{%endif%}
-			</a>
-		
-		</ul>
-	</div>
-{% endblock %}
-
-
-  
 
 		<!-- Contenido Principal-->
 	 	

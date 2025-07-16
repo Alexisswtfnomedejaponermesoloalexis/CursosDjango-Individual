@@ -7,7 +7,7 @@
 
 
 {% block titulo_principal %}
-	COMENTS <span> COMENTARIOS </span>
+	COMENTARIOS<span> <br/><br/> CURSOS DJANGO </span>
 {% endblock %}
 
 
@@ -19,8 +19,8 @@
 			<!--Encabezdo -->
 			<div class="page-header">
 				<div class="page-title">
-					<h3>Comentarios
-				    <small>Lista de Comentarios </small></h3>
+					<h3>Comentarios acerca de los cursos<br/><br/>
+				    <small>Lista de Comentarios de cursos</small></h3>
 				</div>
 
 				
@@ -28,18 +28,7 @@
 
 			{% block url %}
 
-<div class="breadcrumb-line">
-		<ul class="breadcrumb">
-			<a href="{%url 'Comentarios'%}">
-				{%if request.path == '/' %}
-					Comentarios
-				{%else%}
-					Comentarios{{request.path}}
-				{%endif%}
-			</a>
-		
-		</ul>
-	</div>
+
 {% endblock %}
 
 <!-- Tabla de Alumnos -->

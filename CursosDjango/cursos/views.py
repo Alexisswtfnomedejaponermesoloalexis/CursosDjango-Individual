@@ -60,7 +60,7 @@ def editarComentarioContacto(request, id):
     {'comentario': comentario})
 
 def eliminarComentarioContacto(request, id,
-    confirmacion= 'registros/confirmarEliminacion.html'):
+    confirmacion= 'cursos/confirmarEliminacion.html'):
     comentario = get_object_or_404(ComentarioContacto, id=id)
     if request.method=='POST':
         comentario.delete()
