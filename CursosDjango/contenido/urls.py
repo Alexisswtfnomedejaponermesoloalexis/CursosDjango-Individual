@@ -24,7 +24,16 @@ urlpatterns = [
     path('',views_cursos.cursos, name="Principal"),
     #path('', views.principal, name='Principal'), # Página principal
     path('cursos/', views.cursos, name='Cursos'), # Página de cursos disponibles
-    path('contacto/', views.contacto, name='Contacto'), # Página de formulario de contacto
+    path('contacto/', views_cursos.contacto, name='Contacto'), # Página de formulario de contacto
+    path('registrar/', views_cursos.registrar ,name="Registrar"),
+    path('comentarios/', views_cursos.comentarios, name="Comentarios"),
+    path('formulario/', views.formulario, name='Formulario'),
+  path('formEditarComentario/<int:id>/',
+         views_cursos.consultarComentarioIndividual, name='ConsultaIndividual'),
+
+    path('editarComentario/<int:id>/',
+         views_cursos.editarComentarioContacto,name='Editar'),
+         path('eliminarComentario/<int:id>/',views_cursos.eliminarComentarioContacto,name='Eliminar'),
 ]
 
 
