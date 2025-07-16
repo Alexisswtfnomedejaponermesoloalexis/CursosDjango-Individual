@@ -1,0 +1,51 @@
+{% extends "contenido/encabezado.html" %} {# Asegúrate de que esta ruta sea correcta para tu encabezado.html #}
+{% load static %} {# Para cargar archivos estáticos si los usas en esta plantilla #}
+
+{% block titulo %}Panel de Administración Custom{% endblock %}
+
+{% block contenido %}
+<div class="container mt-4">
+    <div class="alert alert-info">
+        <h4 class="alert-heading">¡Bienvenido al Panel de Administración</h4>
+        <p> AQUÍ SE ADMINISTRA TODO SOBRE CURSOS DJANGO</p>
+    </div>
+
+    {# Aquí puedes mantener o personalizar el listado de modelos del administrador #}
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Modelos Registrados</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        {# app_list es una variable que Django Admin pasa automáticamente a este contexto #}
+                        {% for app in app_list %}
+                            {% for model in app.models %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <a href="{{ model.admin_url }}" class="text-decoration-none">{{ model.name }}</a>
+                                    <div>
+                                        {% if model.add_url %}
+                                            <a href="{{ model.add_url }}" class="btn btn-sm btn-success me-2" title="Añadir {{ model.name }}">
+                                                <i class="fas fa-plus-circle"></i>
+                                            </a>
+                                        {% endif %}
+                                        {% if model.change_url %}
+                                            <a href="{{ model.change_url }}" class="btn btn-sm btn-info" title="Ver {{ model.name }}">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                        {% endif %}
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        
+
+    {# Puedes añadir más secciones, gráficos, o enlaces personalizados aquí #}
+</div>
+{% endblock %}

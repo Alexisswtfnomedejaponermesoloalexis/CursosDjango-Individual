@@ -18,7 +18,10 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 
+
+admin.site.index_template = 'admin/custom_dashboard.html' 
 urlpatterns = [
+    
     path('admin/', admin.site.urls), # Acceso al panel de administración de Django
     path('', include('contenido.urls')),  # Enlaza la aplicación
 ]
