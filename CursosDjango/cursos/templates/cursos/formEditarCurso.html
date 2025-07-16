@@ -1,0 +1,94 @@
+{% extends "contenido/encabezado.html" %}
+{% block titulo %}Editar Curso{% endblock %}
+
+{% block contenido %}
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h2 class="mb-0"><i class="fas fa-edit me-2"></i> Editar Curso</h2>
+        </div>
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <div class="mb-3">
+                    <label for="{{ form.codCurso.id_for_label }}" class="form-label">Código del Curso:</label>
+                    {{ form.codCurso }}
+                    {% if form.codCurso.errors %}
+                        <div class="text-danger">{{ form.codCurso.errors }}</div>
+                    {% endif %}
+                </div>
+                
+                <div class="mb-3">
+                    <label for="{{ form.nameCurso.id_for_label }}" class="form-label">Nombre del Curso:</label>
+                    {{ form.nameCurso }}
+                    {% if form.nameCurso.errors %}
+                        <div class="text-danger">{{ form.nameCurso.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="mb-3">
+                    <label for="{{ form.cupo_maximo.id_for_label }}" class="form-label">Cupo Máximo:</label>
+                    {{ form.cupo_maximo }}
+                    {% if form.cupo_maximo.errors %}
+                        <div class="text-danger">{{ form.cupo_maximo.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="mb-3">
+                    <label for="{{ form.turnoCurso.id_for_label }}" class="form-label">Turno del Curso:</label>
+                    {{ form.turnoCurso }}
+                    {% if form.turnoCurso.errors %}
+                        <div class="text-danger">{{ form.turnoCurso.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="mb-3 form-check">
+                    {{ form.disponible }}
+                    <label class="form-check-label" for="{{ form.disponible.id_for_label }}">Disponible</label>
+                    {% if form.disponible.errors %}
+                        <div class="text-danger">{{ form.disponible.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="mb-3">
+                    <label for="{{ form.costo.id_for_label }}" class="form-label">Costo:</label>
+                    {{ form.costo }}
+                    {% if form.costo.errors %}
+                        <div class="text-danger">{{ form.costo.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="mb-3">
+                    <label for="{{ form.contacto.id_for_label }}" class="form-label">Contacto:</label>
+                    {{ form.contacto }}
+                    {% if form.contacto.errors %}
+                        <div class="text-danger">{{ form.contacto.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="mb-3">
+                    <label for="{{ form.imagen.id_for_label }}" class="form-label">Imagen del Curso:</label>
+                    {% if curso.imagen %}
+                        <p>Imagen actual:</p>
+                        <img src="{{ curso.imagen.url }}" alt="Imagen actual del curso" class="img-thumbnail mb-2" style="max-width: 150px;">
+                    {% endif %}
+                    {{ form.imagen }}
+                    {% if form.imagen.errors %}
+                        <div class="text-danger">{{ form.imagen.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save me-1"></i> Guardar Cambios
+                    </button>
+                    <a href="{% url 'Cursos' %}" class="btn btn-secondary">
+                        <i class="fas fa-arrow-alt-circle-left me-1"></i> Cancelar
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

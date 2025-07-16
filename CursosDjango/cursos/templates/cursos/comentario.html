@@ -1,79 +1,65 @@
 {% extends "contenido/encabezado.html" %}
-{% block titulo %}Comentarios {% endblock %}
-
-{% block imagen%}
-	{%load static%}
-{% endblock%}
-
+{% block titulo %}Lista de Comentarios{% endblock %}
 
 {% block titulo_principal %}
-	COMENTARIOS<span> <br/><br/> CURSOS DJANGO </span>
+    COMENTARIOS <span><br/> CURSOSDJANGO</span>
 {% endblock %}
-
 
 {% block contenido %}
-<!-- Contenido Principal-->
-	 	
-
-
-			<!--Encabezdo -->
-			<div class="page-header">
-				<div class="page-title">
-					<h3>Comentarios acerca de los cursos<br/><br/>
-				    <small>Lista de Comentarios de cursos</small></h3>
-				</div>
-
-				
-			</div>
-
-			{% block url %}
-
-
-{% endblock %}
-
-<!-- Tabla de Alumnos -->
-
-<table class="table table-bordered table-
-striped">
-
-<thead>
-<tr>
-<th>Curso</th>
-<th>Usuario</th>
-<th>Mensaje</th>
-<th>Editar</th>
-<th>Eliminar</th>
-
-</tr>
-
-</thead>
-<tbody>
-{% for coments in comentarios %}
-
-<tr>
-
-
-<td class="text-semibold">{{coments.usuario}}</td>
-<td class="muted">{{coments.mensaje}}</td>
-
-<td> 	<a href="{%url 'ConsultaIndividual' coments.id%}">Editar</a>
-</td>
-
-
-<td class="text-center">
-	<a href="{%url 'Eliminar' coments.id%}">Eliminar</a>
-</td>
-</tr>
-</tr>
-{% endfor %}
-</tbody>
-</table>
-<!-- /Tabla de alumnos -->
-
-			<!-- /Encabezado-->
-             
-
-
-		</div>
-		<!-- /Contenido Principal-->
+<div class="container mt-4">
+    <div class="card shadow-sm mb-4">
+        <div class="card-header bg-primary text-white">
+            <h2 class="mb-0"><i class="fas fa-comments me-2"></i> Comentarios acerca de los cursos</h2>
+        </div>
+        <div class="card-body">
+            <h3>Lista de Comentarios de cursos</h3>
+            
+            <div class="table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Curso</th> {# This will now display the course name #}
+                            <th>Usuario</th>
+                            <th>Mensaje</th>
+                            <th>Fecha</th> {# Optional: show date of comment #}
+                            <th>Editar</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for comentario in comentarios %}
+                        <tr>
+                            <td>{{ comentario.curso.nameCurso|default:"N/A" }}</td> {# Access the course name #}
+                            <td>{{ comentario.usuario }}</td>
+                            <td>{{ comentario.mensaje }}</td>
+                            <td>{{ comentario.fecha_creacion|date:"d M Y, H:i" }}</td> {# Display date #}
+                            <td>
+                                <a href="{% url 'ConsultaIndividual' comentario.id %}" class="btn btn-sm btn-info">
+                                    <i class="fas fa-edit"></i> Editar
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{% url 'Eliminar' comentario.id %}" class="btn btn-sm btn-danger">
+                                    <i class="fas fa-trash-alt"></i> Eliminar
+                                </a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="6" class="text-center py-4">
+                                <i class="fas fa-exclamation-circle fa-2x text-muted mb-3"></i>
+                                <h5>No hay comentarios registrados.</h5>
+                                <p>¡Sé el primero en dejar un comentario!</p>
+                                <a href="{% url 'Contacto' %}" class="btn btn-primary mt-2">
+                                    <i class="fas fa-plus me-1"></i> Añadir Comentario
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

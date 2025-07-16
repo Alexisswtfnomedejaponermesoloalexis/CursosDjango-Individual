@@ -27,6 +27,7 @@
                             <th>Costo</th>
                             <th>Contacto</th>
                             <th>Fecha de Registro</th>
+                            <th>Acciones</th> {# New table header for actions #}
                         </tr>
                     </thead>
                     <tbody>
@@ -55,10 +56,18 @@
                             <td>${{ curso.costo }}</td>
                             <td>{{ curso.contacto }}</td>
                             <td>{{ curso.created|date:"d M Y, H:i" }}</td>
+                            <td>
+                                <a href="{% url 'editar_curso' curso.codCurso %}" class="btn btn-sm btn-info me-2">
+                                    <i class="fas fa-edit"></i> Editar
+                                </a>
+                                <a href="{% url 'eliminar_curso' curso.codCurso %}" class="btn btn-sm btn-danger">
+                                    <i class="fas fa-trash-alt"></i> Eliminar
+                                </a>
+                            </td>
                         </tr>
                         {% empty %}
                         <tr>
-                            <td colspan="9" class="text-center py-4">
+                            <td colspan="10" class="text-center py-4"> {# colspan updated to 10 #}
                                 <i class="fas fa-exclamation-circle fa-2x text-muted mb-3"></i>
                                 <h5>No hay cursos registrados</h5>
                                 <a href="{% url 'registrar_curso' %}" class="btn btn-primary mt-2">

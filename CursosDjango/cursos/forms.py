@@ -5,7 +5,12 @@ from django.forms import ModelForm
 class ComentarioContactoForm(forms.ModelForm):
     class Meta:
         model = ComentarioContacto
-        fields = ['usuario','mensaje']
+        fields = ['usuario', 'mensaje', 'curso'] 
+        widgets = {
+            'usuario': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Tu nombre'}),
+            'mensaje': forms.Textarea(attrs={'class': 'form-control', 'rows': 5, 'placeholder': 'Tu mensaje'}),
+            'curso': forms.Select(attrs={'class': 'form-control'}), 
+        }
         
 
 class CursoForm(forms.ModelForm):

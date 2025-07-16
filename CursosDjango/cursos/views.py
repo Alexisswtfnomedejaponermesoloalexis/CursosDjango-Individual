@@ -23,14 +23,16 @@ def registrar(request):
         form = ComentarioContactoForm(request.POST)
         if form.is_valid(): #Si los datos recibidos son correctos
             form.save() #inserta
-            
+            messages.success(request, '¡Comentario registrado exitosamente!') # Optional: add a success message
             return redirect('Comentarios')        
-    form = ComentarioContactoForm()
-#Si algo sale mal se reenvian al formulario los datos ingresados
+        else:
+            messages.error(request, 'Error al registrar el comentario. Por favor, revisa los campos.')
+    form = ComentarioContactoForm() # If GET request or form is not valid, re-render with the form
     return render(request,'cursos/contacto.html',{'form': form})
 
 def comentarios(request):
-    coments=ComentarioContacto.objects.all()
+  
+    coments=ComentarioContacto.objects.all().select_related('curso').order_by('-created')
     return render(request, "cursos/comentario.html", {'comentarios':coments})
 
 
@@ -81,4 +83,24 @@ def registrar_curso(request):
         form = CursoForm()
     
     return render(request, 'contenido/cursos.html', {'form': form})
+
+def editar_curso(request, codCurso):
+    curso = get_object_or_404(Cursos, codCurso=codCurso)
+    if request.method == 'POST':
+        form = CursoForm(request.POST, request.FILES, instance=curso)
+        if form.is_valid():
+            form.save()
+            messages.success(request, '¡Curso actualizado exitosamente!')
+            return redirect('Cursos')
+    else:
+        form = CursoForm(instance=curso)
+    return render(request, 'cursos/formEditarCurso.html', {'form': form, 'curso': curso})
+
+def eliminar_curso(request, codCurso):
+    curso = get_object_or_404(Cursos, codCurso=codCurso)
+    if request.method == 'POST':
+        curso.delete()
+        messages.success(request, '¡Curso eliminado exitosamente!')
+        return redirect('Cursos')
+    return render(request, 'cursos/confirmarEliminacionCurso.html', {'object': curso})
 

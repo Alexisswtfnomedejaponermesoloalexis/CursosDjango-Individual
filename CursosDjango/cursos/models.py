@@ -69,6 +69,7 @@ class ComentarioContacto(models.Model):
     id = models.AutoField(primary_key=True,verbose_name="Clave")
     usuario = models.TextField(verbose_name="Usuario")
     mensaje = models.TextField(verbose_name="Comentario")
+    curso = models.ForeignKey(Cursos, on_delete=models.CASCADE, related_name='comentarios', null=True, blank=True)
     created =models.DateTimeField(auto_now_add=True,verbose_name="Registrado")
 
     class Meta:
