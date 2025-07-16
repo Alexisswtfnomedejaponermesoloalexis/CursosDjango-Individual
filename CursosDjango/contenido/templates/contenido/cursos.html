@@ -36,9 +36,14 @@ Registrar <span>Curso</span>
 <form class="form-horizontal" action="#" role="form">
   <div class="panel panel-default">
     <div class="panel-body">
+      
+
+ <!-- AQUI VA EL DE SUBIR IMAGEN-->
+
+
 
       <div class="form-group">
-        <label class="col-sm-2 control-label text-right">KEY curso:</label>
+        <label class="col-sm-2 control-label text-right">Código del Curso: </label>
         <div class="col-sm-10">
           <input type="text" class="form-control" placeholder="Ex:01">
         </div>
@@ -50,27 +55,27 @@ Registrar <span>Curso</span>
           <input type="text" class="form-control" placeholder="Ej: Álgebra">
         </div>
       </div>
-
       <div class="form-group">
-        <label class="col-sm-2 control-label text-right">Nivel:</label>
+        <label class="col-sm-2 control-label text-right">Turno del Curso</label>
         <div class="col-sm-10">
-          <select class="select" data-placeholder="Selecciona un nivel">
-            <option value=""></option>
-            <option>Principiante</option>
-            <option>Intermedio</option>
-            <option>Avanzado</option>
-            <option>Pro</option>
-          </select>
+          <input type="text" class="form-control" placeholder="Ej: Matutino/Vespertino/Mixto">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label text-right">Cupo máximo del curso:</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" placeholder="Ej: 8, 9, 30, etc">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label text-right">¿DISPONIBLE?</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" placeholder="Ej: Sí, No">
         </div>
       </div>
 
-      <div class="form-group">
-        <label class="col-sm-2 control-label text-right">Duración (hrs):</label>
-        <div class="col-sm-10">
-          <input type="number" class="form-control" min="1" placeholder="Hrs ">
-        </div>
-      </div>
-    </br>
+     
+
       <div class="form-actions text-right">
         <input type="submit" value="Guardar Curso" class="btn btn-primary">
       </div>
