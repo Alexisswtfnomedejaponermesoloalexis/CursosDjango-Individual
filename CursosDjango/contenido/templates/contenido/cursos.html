@@ -1,28 +1,14 @@
 {% extends "contenido/encabezado.html" %}
 {% load static %}
 
-{% block titulo %}Cursos{% endblock %}
+{% block titulo %}Registrar Curso{% endblock %}
 
 {% block imagen %}
-<img src="{% static 'contenido/images/register.png' %}" class="img-fluid mx-auto d-block" style="max-height: 120px;" alt="Cursos">
+<img src="{% static 'contenido/images/register.png' %}" class="img-fluid mx-auto d-block" style="max-height: 120px;" alt="Registro">
 {% endblock %}
 
 {% block titulo_principal %}
 Registrar <span>Curso</span>
-{% endblock %}
-
-{% block url %}
-<div class="breadcrumb-line">
-  <ul class="breadcrumb">
-    <a href="{% url 'Cursos' %}">
-      {% if request.path == '/' %}
-        Cursos
-      {% else %}
-        Cursos{{ request.path }}
-      {% endif %}
-    </a>
-  </ul>
-</div>
 {% endblock %}
 
 {% block contenido %}
@@ -33,54 +19,103 @@ Registrar <span>Curso</span>
   </div>
 </div>
 
-<form class="form-horizontal" action="#" role="form">
+<form class="form-horizontal" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
   <div class="panel panel-default">
     <div class="panel-body">
       
-
- <!-- AQUI VA EL DE SUBIR IMAGEN-->
-
-
-
-      <div class="form-group">
-        <label class="col-sm-2 control-label text-right">Código del Curso: </label>
+      <!-- Mensajes de Django -->
+      {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        {% endfor %}
+      {% endif %}
+      
+      <!-- Campos del formulario -->
+      <div class="form-group mb-3">
+        <label class="col-sm-2 control-label text-right">Imagen:</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" placeholder="Ex:01">
+          {{ form.imagen }}
+        </div>
+      </div>
+      
+      <div class="form-group mb-3">
+        <label class="col-sm-2 control-label text-right">Código:</label>
+        <div class="col-sm-10">
+          {{ form.codCurso }}
+          <small class="text-muted">Ej: CURS01</small>
         </div>
       </div>
 
-      <div class="form-group">
-        <label class="col-sm-2 control-label text-right">Nombre del curso:</label>
+      <div class="form-group mb-3">
+        <label class="col-sm-2 control-label text-right">Nombre:</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" placeholder="Ej: Álgebra">
+          {{ form.nameCurso }}
+          <small class="text-muted">Ej: Álgebra Lineal</small>
         </div>
       </div>
-      <div class="form-group">
-        <label class="col-sm-2 control-label text-right">Turno del Curso</label>
+      
+      <div class="form-group mb-3">
+        <label class="col-sm-2 control-label text-right">Turno:</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" placeholder="Ej: Matutino/Vespertino/Mixto">
+          {{ form.turnoCurso }}
         </div>
       </div>
-      <div class="form-group">
-        <label class="col-sm-2 control-label text-right">Cupo máximo del curso:</label>
+      
+      <div class="form-group mb-3">
+        <label class="col-sm-2 control-label text-right">Cupo:</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" placeholder="Ej: 8, 9, 30, etc">
+          {{ form.cupo_maximo }}
+          <small class="text-muted">Ej: 30</small>
         </div>
       </div>
-      <div class="form-group">
-        <label class="col-sm-2 control-label text-right">¿DISPONIBLE?</label>
+      
+      <div class="form-group mb-3">
+        <label class="col-sm-2 control-label text-right">Costo:</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" placeholder="Ej: Sí, No">
+          <div class="input-group">
+            <span class="input-group-text">$</span>
+            {{ form.costo }}
+          </div>
+          <small class="text-muted">Ej: 1500.00</small>
+        </div>
+      </div>
+      
+      <div class="form-group mb-3">
+        <label class="col-sm-2 control-label text-right">Contacto:</label>
+        <div class="col-sm-10">
+          {{ form.contacto }}
+          <small class="text-muted">Ej: contacto@universidad.edu</small>
+        </div>
+      </div>
+      
+      <div class="form-group mb-3">
+        <div class="col-sm-offset-2 col-sm-10">
+          <div class="form-check">
+            {{ form.disponible }}
+            <label class="form-check-label" for="{{ form.disponible.id_for_label }}">
+              ¿Curso disponible?
+            </label>
+          </div>
         </div>
       </div>
 
-     
-
-      <div class="form-actions text-right">
-        <input type="submit" value="Guardar Curso" class="btn btn-primary">
+      <div class="form-actions text-end mt-4">
+        <button type="submit" class="btn btn-primary">
+          <i class="fas fa-save me-1"></i> Guardar Curso
+        </button>
+        <a href="{% url 'Cursos' %}" class="btn btn-secondary">
+          <i class="fas fa-times me-1"></i> Cancelar
+        </a>
       </div>
 
     </div>
   </div>
 </form>
+
+<!-- Agregar FontAwesome para iconos -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 {% endblock %}

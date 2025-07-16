@@ -2,6 +2,11 @@ from django.db import models
 from ckeditor.fields import RichTextField
 
 class Cursos(models.Model):
+    TURNOS = [
+        ('Matutino', 'Matutino'),
+        ('Vespertino', 'Vespertino'),
+        ('Mixto', 'Mixto'),
+    ]
 
     codCurso = models.CharField(max_length=12,verbose_name="Código del Curso") #Texto corto
     nameCurso = models.TextField(verbose_name="Nombre del Curso") #Texto largo

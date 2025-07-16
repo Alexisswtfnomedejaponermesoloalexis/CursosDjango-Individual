@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Cursos, ComentarioContacto
-from .forms import ComentarioContactoForm
+from .forms import ComentarioContactoForm, CursoForm
 from django.contrib import messages
 from django.shortcuts import get_object_or_404
 
@@ -68,4 +68,17 @@ def eliminarComentarioContacto(request, id,
         return render(request, "cursos/comentario.html",
                       {'comentarios':comentarios})
     return render(request, confirmacion, {'object': comentario})
+    
+
+def registrar_curso(request):
+    if request.method == 'POST':
+        form = CursoForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, '¡Curso registrado exitosamente!')
+            return redirect('Cursos')
+    else:
+        form = CursoForm()
+    
+    return render(request, 'contenido/cursos.html', {'form': form})
 

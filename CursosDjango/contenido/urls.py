@@ -18,14 +18,18 @@ from django.urls import path
 from . import views # Importa las funciones de vistas
 from contenido import views
 from cursos import views as views_cursos
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 urlpatterns = [
     path('',views_cursos.cursos, name="Principal"),
     #path('', views.principal, name='Principal'), # Página principal
     path('cursos/', views.cursos, name='Cursos'), # Página de cursos disponibles
+    path('registrar-curso/', views_cursos.registrar_curso, name='registrar_curso'),
     path('contacto/', views_cursos.contacto, name='Contacto'), # Página de formulario de contacto
     path('registrar/', views_cursos.registrar ,name="Registrar"),
+    
     path('comentarios/', views_cursos.comentarios, name="Comentarios"),
     path('formulario/', views.formulario, name='Formulario'),
   path('formEditarComentario/<int:id>/',
@@ -34,7 +38,7 @@ urlpatterns = [
     path('editarComentario/<int:id>/',views_cursos.editarComentarioContacto,name='Editar'),
          path('eliminarComentario/<int:id>/',views_cursos.eliminarComentarioContacto,name='Eliminar'),
          
-]
+]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 
